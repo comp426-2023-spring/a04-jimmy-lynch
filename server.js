@@ -1,22 +1,15 @@
+#!/usr/bin/env node
+
 import minimist from 'minimist';
 import express from 'express';
 import { rps, rpsls } from './lib/rpsls.js';
 
-const app = express();
+var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 const args = minimist(process.argv.slice(2));
 const port = args.port || 5000;
-
-// default endpoint)
-app.get("/app/*", (req, res) => {
-    res.status(404).send("404 NOT FOUND");
-})
-
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-})
 
 // Check endpoint @ /app
 app.get('/app', (req, res) => {
@@ -57,4 +50,14 @@ app.post('/app/rpsls/play/', (req, res) => { //rpsls JSON
 
 app.get('/app/rpsls/play/:move', (req, res) => { //rpsls shot params
     res.status(200).send(JSON.stringify(rpsls(req.params.move)));
+})
+
+
+// default endpoint)
+app.get("/app/*", (req, res) => {
+    res.status(404).send("404 NOT FOUND");
+})
+
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
 })
