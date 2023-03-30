@@ -41,15 +41,15 @@ app.get('/app/rps/play/:move', (req, res) => { //rps shot params
 
 // /app/rpsls/play endpoint
 app.get('/app/rpsls/play/', (req, res) => { //rpsls URLEncoded
-    res.status(200).send(JSON.stringify(rpsls(req.query.move)));
+    res.status(200).send(JSON.stringify(rpsls(req.query.shot)));
 })
 
 app.post('/app/rpsls/play/', (req, res) => { //rpsls JSON
-    res.status(200).send(JSON.stringify(rpsls(req.body.move)));
+    res.status(200).send(JSON.stringify(rpsls(req.body.shot)));
 })
 
 app.get('/app/rpsls/play/:move', (req, res) => { //rpsls shot params
-    res.status(200).send(JSON.stringify(rpsls(req.params.move)));
+    res.status(200).send(JSON.stringify(rpsls(req.params.shot)));
 })
 
 
